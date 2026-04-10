@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandrahaas Reddyshetty — Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F2EAE0; color: #2a2a2a; }
+
+    /* NAV */
+    .nav { background: #9B8EC7; padding: 0 2.5rem; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-name { font-size: 15px; font-weight: 500; color: #F2EAE0; letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: #e8dff5; font-size: 13px; text-decoration: none; cursor: pointer; }
+    .nav-links a:hover { color: #F2EAE0; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #9B8EC7 0%, #BDA6CE 60%, #B4D3D9 100%); min-height: 88vh; display: flex; align-items: center; padding: 4rem 2.5rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-tag { font-size: 12px; font-weight: 500; color: #F2EAE0; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.85; }
+    .hero-name { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 600; color: #fff; line-height: 1.1; margin-bottom: 0.5rem; }
+    .hero-role { font-size: 1.1rem; color: #e8dff5; margin-bottom: 1.5rem; font-weight: 300; }
+    .hero-desc { font-size: 0.95rem; color: #e8dff5; line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: #F2EAE0; color: #9B8EC7; padding: 10px 24px; border-radius: 50px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: #F2EAE0; padding: 10px 24px; border-radius: 50px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid rgba(242,234,224,0.5); transition: all 0.2s; }
+    .btn-outline:hover { border-color: #F2EAE0; background: rgba(242,234,224,0.1); }
+    .hero-visual { display: flex; justify-content: center; }
+    .avatar-ring { width: 260px; height: 260px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.3); }
+    .avatar-inner { width: 220px; height: 220px; border-radius: 50%; background: #BDA6CE; display: flex; align-items: center; justify-content: center; }
+
+    /* STATS */
+    .stats-wrap { background: #F2EAE0; padding: 2rem 2.5rem; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1100px; margin: 0 auto; }
+    .stat-box { border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .stat-num { font-size: 1.8rem; font-weight: 600; color: #fff; }
+    .stat-lbl { font-size: 11px; color: rgba(242,234,224,0.8); margin-top: 4px; }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-full { padding: 5rem 2.5rem; }
+    .section-full .wrap { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 500; color: #9B8EC7; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .section-title { font-size: 2rem; font-weight: 600; color: #2a2a2a; margin-bottom: 0.75rem; }
+    .section-sub { font-size: 0.95rem; color: #666; max-width: 500px; line-height: 1.7; margin-bottom: 3rem; }
+    .divider { width: 100%; height: 1px; background: rgba(155,142,199,0.2); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-card { background: #fff; border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(180,211,217,0.4); }
+    .skill-card-icon { width: 36px; height: 36px; border-radius: 8px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; }
+    .ic-purple { background: #EDE8F8; }
+    .ic-teal { background: #DFF0F2; }
+    .ic-mauve { background: #F0E9F6; }
+    .skill-card-title { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 0.5rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 400; }
+    .tag-purple { background: #EDE8F8; color: #6B5FBB; }
+    .tag-teal { background: #DFF0F2; color: #3B7E8A; }
+    .tag-mauve { background: #F0E9F6; color: #8B5FA3; }
+    .tag-cream { background: #F2EAE0; color: #7A6650; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card { background: #fff; border-radius: 16px; padding: 2rem; border: 1px solid rgba(180,211,217,0.4); position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #B4D3D9, #BDA6CE, #9B8EC7); }
+    .proj-num { font-size: 11px; font-weight: 500; color: #9B8EC7; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .proj-title { font-size: 1rem; font-weight: 600; color: #2a2a2a; margin-bottom: 0.75rem; }
+    .proj-desc { font-size: 0.88rem; color: #666; line-height: 1.65; margin-bottom: 1.25rem; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* EDUCATION */
+    .edu-timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+    .edu-item { background: #fff; border-radius: 12px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; border: 1px solid rgba(180,211,217,0.4); }
+    .edu-year { font-size: 11px; font-weight: 500; color: #9B8EC7; min-width: 70px; }
+    .edu-info { flex: 1; }
+    .edu-degree { font-size: 14px; font-weight: 500; color: #2a2a2a; }
+    .edu-inst { font-size: 12px; color: #888; }
+    .edu-score { font-size: 14px; font-weight: 600; color: #BDA6CE; }
+
+    /* CERTS */
+    .certs-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+    .cert-item { background: #fff; border-radius: 10px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(180,211,217,0.4); }
+    .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: #9B8EC7; flex-shrink: 0; }
+    .cert-text { font-size: 13px; color: #333; line-height: 1.4; }
+    .cert-issuer { font-size: 11px; color: #999; margin-top: 2px; }
+
+    /* ACHIEVEMENTS */
+    .achieve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .achieve-card { background: #fff; border-radius: 12px; padding: 1.5rem; border-left: 3px solid #BDA6CE; border-top: 1px solid rgba(180,211,217,0.3); border-right: 1px solid rgba(180,211,217,0.3); border-bottom: 1px solid rgba(180,211,217,0.3); }
+    .achieve-type { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #9B8EC7; margin-bottom: 0.5rem; }
+    .achieve-text { font-size: 13px; color: #333; line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+    .contact-card { background: #fff; border-radius: 12px; padding: 1.25rem; text-align: center; border: 1px solid rgba(180,211,217,0.4); }
+    .contact-icon-wrap { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+    .contact-label { font-size: 11px; color: #999; margin-bottom: 4px; }
+    .contact-val { font-size: 12px; color: #9B8EC7; font-weight: 500; word-break: break-all; }
+
+    /* FOOTER */
+    .footer { background: #9B8EC7; padding: 2rem 2.5rem; text-align: center; }
+    .footer-name { font-size: 1rem; font-weight: 500; color: #F2EAE0; margin-bottom: 0.5rem; }
+    .footer-sub { font-size: 12px; color: rgba(242,234,224,0.7); }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-visual { display: none; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14" fill="#F2EAE0"/>
+        <path d="M16 2 C16 2 16 30 16 30" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M2 16 C2 16 30 16 30 16" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M5 7 C9 11 9 21 5 25" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M27 7 C23 11 23 21 27 25" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(155,142,199,0.6)" stroke-width="1.5"/>
+      </svg>
+      <span class="nav-name">Chandrahaas</span>
+    </div>
+    <div class="nav-links">
+      <a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a>
+      <a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a>
+      <a onclick="document.getElementById('edu').scrollIntoView({behavior:'smooth'})">Education</a>
+      <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Full Stack Developer &amp; ML Engineer</div>
+        <div class="hero-name">Chandrahaas<br>Reddyshetty</div>
+        <div class="hero-role">Building intelligent systems &amp; scalable web applications</div>
+        <div class="hero-desc">Detail-oriented developer with deep expertise in AI/ML, full-stack development, and data-driven decision-making. Currently pursuing B.Tech in IT at VNR VJIET (GPA: 8.11).</div>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+          <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+              <circle cx="55" cy="55" r="52" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+              <circle cx="55" cy="55" r="44" fill="rgba(255,255,255,0.15)"/>
+              <path d="M55 10 C55 10 55 100 55 100" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+              <path d="M10 55 C10 55 100 55 100 55" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+              <path d="M18 27 C30 38 30 72 18 83" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+              <path d="M92 27 C80 38 80 72 92 83" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+              <circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div class="stats-row">
+      <div class="stat-box" style="background:#9B8EC7;"><div class="stat-num">8.11</div><div class="stat-lbl">Current GPA</div></div>
+      <div class="stat-box" style="background:#BDA6CE;"><div class="stat-num">3+</div><div class="stat-lbl">AI/ML Projects</div></div>
+      <div class="stat-box" style="background:#B4D3D9;"><div class="stat-num">5</div><div class="stat-lbl">Certifications</div></div>
+      <div class="stat-box" style="background:#9B8EC7;"><div class="stat-num">95%</div><div class="stat-lbl">JEE Percentile</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <div id="skills" style="background:#F2EAE0; padding: 5rem 2.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Expertise</div>
+      <div class="section-title">Technical Skills</div>
+      <div class="section-sub">Proficient across the full stack — from ML pipelines to polished frontend interfaces.</div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-icon ic-purple">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" fill="#9B8EC7"/><rect x="10" y="2" width="6" height="6" rx="1.5" fill="#BDA6CE"/><rect x="2" y="10" width="6" height="6" rx="1.5" fill="#BDA6CE"/><rect x="10" y="10" width="6" height="6" rx="1.5" fill="#9B8EC7"/></svg>
+          </div>
+          <div class="skill-card-title">Languages</div>
+          <div class="skill-tags">
+            <span class="tag tag-purple">Python</span><span class="tag tag-purple">Java</span><span class="tag tag-purple">JavaScript</span><span class="tag tag-purple">C</span><span class="tag tag-purple">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon ic-teal">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#B4D3D9" stroke-width="2"/><circle cx="9" cy="9" r="2" fill="#B4D3D9"/></svg>
+          </div>
+          <div class="skill-card-title">Frameworks &amp; Tools</div>
+          <div class="skill-tags">
+            <span class="tag tag-teal">React.js</span><span class="tag tag-teal">Node.js</span><span class="tag tag-teal">Express.js</span><span class="tag tag-teal">FastAPI</span><span class="tag tag-teal">Spring Boot</span><span class="tag tag-teal">Flask</span><span class="tag tag-teal">Power BI</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon ic-mauve">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><ellipse cx="9" cy="7" rx="6" ry="3" stroke="#BDA6CE" stroke-width="1.5"/><path d="M3 7v4c0 1.66 2.69 3 6 3s6-1.34 6-3V7" stroke="#BDA6CE" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <div class="skill-card-title">Databases</div>
+          <div class="skill-tags">
+            <span class="tag tag-mauve">MySQL</span><span class="tag tag-mauve">MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon ic-purple">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#9B8EC7" stroke-width="1.5"/><path d="M6 14v2M12 14v2" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="skill-card-title">Platforms &amp; DevOps</div>
+          <div class="skill-tags">
+            <span class="tag tag-cream">Git/GitHub</span><span class="tag tag-cream">Firebase</span><span class="tag tag-cream">Netlify</span><span class="tag tag-cream">Vercel</span><span class="tag tag-cream">Render</span><span class="tag tag-cream">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <div id="projects" style="background:#fff; padding: 5rem 2.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Work</div>
+      <div class="section-title">Featured Projects</div>
+      <div class="section-sub">Real-world AI applications built with modern stacks, focused on meaningful user outcomes.</div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="proj-num">01 — AI / NLP</div>
+          <div class="proj-title">Friday — AI Document Q&amp;A System</div>
+          <div class="proj-desc">Intelligent document analysis platform allowing users to upload files, extract text, and interact via natural language queries. Semantic search powered by vector embeddings.</div>
+          <div class="proj-tech">
+            <span class="tag tag-purple">MiniLM Embeddings</span><span class="tag tag-teal">Node.js</span><span class="tag tag-mauve">MongoDB</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="proj-num">02 — Full Stack</div>
+          <div class="proj-title">AI-Powered Study Group Platform</div>
+          <div class="proj-desc">Helps students form optimal study groups using ML clustering on skills and interests. Real-time group communication via WebSocket-based chat rooms.</div>
+          <div class="proj-tech">
+            <span class="tag tag-teal">React.js</span><span class="tag tag-teal">Node.js</span><span class="tag tag-purple">WebSockets</span><span class="tag tag-mauve">Clustering ML</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="proj-num">03 — Machine Learning</div>
+          <div class="proj-title">Text Document Classification</div>
+          <div class="proj-desc">ML pipeline that classifies text documents into predefined categories using vector embeddings and gradient boosting, improving automated organization and retrieval accuracy.</div>
+          <div class="proj-tech">
+            <span class="tag tag-purple">MiniLM Embeddings</span><span class="tag tag-cream">XGBoost</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION -->
+  <div id="edu" style="background:#F2EAE0; padding: 5rem 2.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Background</div>
+      <div class="section-title">Education</div>
+      <div class="section-sub">Strong academic foundation with consistent top-tier performance.</div>
+      <div class="edu-timeline">
+        <div class="edu-item">
+          <div class="edu-year">2023–27</div>
+          <div class="edu-info">
+            <div class="edu-degree">B.Tech — Information Technology</div>
+            <div class="edu-inst">VNR VJIET, Autonomous</div>
+          </div>
+          <div class="edu-score">8.11 GPA</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2020–22</div>
+          <div class="edu-info">
+            <div class="edu-degree">Intermediate (Class XII)</div>
+            <div class="edu-inst">SSR College, Board of Intermediate Edcn.</div>
+          </div>
+          <div class="edu-score">92%</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2019</div>
+          <div class="edu-info">
+            <div class="edu-degree">SSC (Class X)</div>
+            <div class="edu-inst">SR Prime High School, Board of Secondary Edcn.</div>
+          </div>
+          <div class="edu-score">10.0 GPA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CERTS & ACHIEVEMENTS -->
+  <div style="background:#fff; padding: 5rem 2.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Recognition</div>
+      <div class="section-title">Certifications &amp; Achievements</div>
+      <div class="section-sub">Validated skills across AI, web development, and competitive programming.</div>
+      <div class="certs-list">
+        <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-text">Introduction to Large Language Models — Elite Silver</div><div class="cert-issuer">NPTEL · 2025</div></div></div>
+        <div class="cert-item"><div class="cert-dot" style="background:#B4D3D9;"></div><div><div class="cert-text">JavaScript Essentials</div><div class="cert-issuer">Cisco NETACAD</div></div></div>
+        <div class="cert-item"><div class="cert-dot" style="background:#BDA6CE;"></div><div><div class="cert-text">Python &amp; Java Certifications</div><div class="cert-issuer">HackerRank</div></div></div>
+        <div class="cert-item"><div class="cert-dot"></div><div><div class="cert-text">Java Programming for Complete Beginners</div><div class="cert-issuer">Udemy</div></div></div>
+        <div class="cert-item"><div class="cert-dot" style="background:#B4D3D9;"></div><div><div class="cert-text">Front End Development</div><div class="cert-issuer">Oneroadmap</div></div></div>
+      </div>
+      <div class="achieve-grid">
+        <div class="achieve-card"><div class="achieve-type">Academic</div><div class="achieve-text">95th percentile in JEE Main — top-performing candidates nationwide</div></div>
+        <div class="achieve-card" style="border-left-color:#B4D3D9;"><div class="achieve-type">Academic</div><div class="achieve-text">College Topper in Intermediate Board Examinations</div></div>
+        <div class="achieve-card" style="border-left-color:#BDA6CE;"><div class="achieve-type">Hackathon</div><div class="achieve-text">TechnoVista 2k25 (24hr) — VJ Data Questers: Full-stack prototype delivery</div></div>
+        <div class="achieve-card"><div class="achieve-type">Hackathon</div><div class="achieve-text">Webathon 3.0 by ACM VNRVJIET — AI Document Q&amp;A system</div></div>
+        <div class="achieve-card" style="border-left-color:#B4D3D9;"><div class="achieve-type">Sports</div><div class="achieve-text">National-level Basketball representation; multiple state-level wins</div></div>
+        <div class="achieve-card" style="border-left-color:#BDA6CE;"><div class="achieve-type">Leadership</div><div class="achieve-text">Student Volunteer, ACM VNRVJIET Chapter</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <div id="contact" style="background:#F2EAE0; padding: 5rem 2.5rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Connect</div>
+      <div class="section-title">Get In Touch</div>
+      <div class="section-sub">Open to internships, collaborations, and full-time opportunities.</div>
+      <div class="contact-row">
+        <div class="contact-card">
+          <div class="contact-icon-wrap" style="background:#EDE8F8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#9B8EC7" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="#9B8EC7" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">reddyshettychandrahaas@gmail.com</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap" style="background:#DFF0F2;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="#B4D3D9" stroke-width="1.5"/><path d="M4 7v5M4 4v1M8 12V7M12 12V5" stroke="#B4D3D9" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">Reddyshetty Chandrahaas</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap" style="background:#F0E9F6;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="#BDA6CE" stroke-width="1.5"/><path d="M2 14c0-2.76 2.69-5 6-5s6 2.24 6 5" stroke="#BDA6CE" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">Chandrahaas11</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap" style="background:#EDE8F8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2a1 1 0 00-1 1v1.5C2 10.4 5.6 14 10.5 14H12a1 1 0 001-1v-2a1 1 0 00-.8-.98l-2-.4a1 1 0 00-1.07.52l-.5.9A7.02 7.02 0 015.98 6.37l.9-.5a1 1 0 00.52-1.07l-.4-2A1 1 0 006 2H3z" stroke="#9B8EC7" stroke-width="1.2" fill="none"/></svg>
+          </div>
+          <div class="contact-label">Mobile</div>
+          <div class="contact-val">+91 8977300749</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-name">Chandrahaas Reddyshetty</div>
+    <div class="footer-sub">Full Stack Developer · AI/ML Engineer · National Basketball Player · Hyderabad, India</div>
+  </footer>
+
+</body>
+</html>
